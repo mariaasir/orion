@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Categoría personalizada de seguridad -->
+    <record id="module_category_familia" model="ir.module.category">
+        <field name="name">Gestión de Familias</field>
+        <field name="description">Categoría para agrupar monitores y tutores legales</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Grupo Monitor -->
+    <record id="group_monitor" model="res.groups">
+        <field name="name">Monitor</field>
+        <field name="category_id" ref="orion_base_module.module_category_familia"/>
+    </record>
+
+    <!-- Grupo Padre/Madre/Tutor -->
+    <record id="group_padre" model="res.groups">
+        <field name="name">Padre/Madre/Tutor</field>
+        <field name="category_id" ref="orion_base_module.module_category_familia"/>
+    </record>
+</odoo>

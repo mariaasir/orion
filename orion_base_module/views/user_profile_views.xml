@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Vista para crear usuarios -->
+     <record id="view_users_custom_form" model="ir.ui.view">
+        <field name="name">users.profile.form.custom</field>
+        <field name="model">users.profile</field>
+        <field name="arch" type="xml">
+            <form string="Usuario Personalizado">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="last_name" required="1"/>
+                        <field name="dni" required="0"/>
+                        <field name="birth_date" required="0"/>
+                        <field name="address" required="0"/>
+                        <field name="phone_mobile" required="0"/>
+                        <field name="email" required="1"/>
+                        <field name="profile_type" required="1"/>
+                        <field name="children_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="login_name" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para los padres -->
+    <record id="action_users" model="ir.actions.act_window">
+        <field name="name">Add users</field>
+        <field name="res_model">users.profile</field>
+        <field name="view_mode">form,tree</field>
+
+        <field name="target">current</field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem id="menu_gestion_familias" name="Gestión de Familias" sequence="10"/>
+    <menuitem id="submenu_monitores" name="Add Users" parent="menu_gestion_familias" action="action_users"/>
+</odoo>
