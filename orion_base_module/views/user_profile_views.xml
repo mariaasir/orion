@@ -1,39 +1,175 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Vista para crear usuarios -->
-     <record id="view_users_custom_form" model="ir.ui.view">
-        <field name="name">users.profile.form.custom</field>
-        <field name="model">users.profile</field>
+    <!-- Vista tree para lista de usuarios genérica (necesaria para Add User) -->
+    <record id="view_add_users_tree" model="ir.ui.view">
+        <field name="name">add.users.tree</field>
+        <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <form string="Usuario Personalizado">
+            <tree string="Users">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="dni"/>
+                <field name="user_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista form para agregar usuario -->
+    <record id="view_add_users_form" model="ir.ui.view">
+        <field name="name">add.users.form</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Add User">
                 <sheet>
                     <group>
-                        <field name="name" required="1"/>
-                        <field name="last_name" required="1"/>
-                        <field name="dni" required="0"/>
-                        <field name="birth_date" required="0"/>
-                        <field name="address" required="0"/>
-                        <field name="phone_mobile" required="0"/>
-                        <field name="email" required="1"/>
-                        <field name="profile_type" required="1"/>
-                        <field name="children_ids" widget="many2many_tags" options="{'no_create': True}"/>
-                        <field name="login_name" required="1"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="dni"/>
+                        <field name="birthdate"/>
+                        <field name="plain_password"/>
+                        <field name="user_type" widget="radio"/>
+                        <field name="seccion" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
+                        <field name="child_ids" attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Acción para los padres -->
-    <record id="action_users" model="ir.actions.act_window">
-        <field name="name">Add users</field>
-        <field name="res_model">users.profile</field>
-        <field name="view_mode">form,tree</field>
-
-        <field name="target">current</field>
+    <!-- Acción ventana para agregar usuario -->
+    <record id="action_res_users" model="ir.actions.act_window">
+        <field name="name">Add User</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_add_users_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_add_users_form')})
+        ]"/>
     </record>
 
-    <!-- Menú -->
-    <menuitem id="menu_gestion_familias" name="Gestión de Familias" sequence="10"/>
-    <menuitem id="submenu_monitores" name="Add Users" parent="menu_gestion_familias" action="action_users"/>
+    <!-- Vista tree para lista de padres -->
+    <record id="view_res_users_tree_parents" model="ir.ui.view">
+        <field name="name">res.users.tree.parents</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Parents">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="dni"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista form para padres -->
+    <record id="view_res_users_form_parents" model="ir.ui.view">
+        <field name="name">res.users.form.parents</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Parent">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="dni"/>
+                        <field name="birthdate"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="user_type" widget="radio"/>
+                        <field name="seccion" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
+                        <field name="child_ids" attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>
+                        <field name="plain_password"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista tree para lista de monitores -->
+    <record id="view_res_users_tree_monitors" model="ir.ui.view">
+        <field name="name">res.users.tree.monitors</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Monitors">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="seccion"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista form para monitores -->
+    <record id="view_res_users_form_monitors" model="ir.ui.view">
+        <field name="name">res.users.form.monitors</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Monitor">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="dni"/>
+                        <field name="birthdate"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="user_type" widget="radio"/>
+                        <field name="seccion"/>
+                        <field name="plain_password"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para listar padres -->
+    <record id="action_parents" model="ir.actions.act_window">
+        <field name="name">Parents</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_res_users_tree_parents')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_users_form_parents')})
+        ]"/>
+        <field name="domain">[('user_type', '=', 'parent')]</field>
+    </record>
+
+    <!-- Acción para listar monitores -->
+    <record id="action_monitors" model="ir.actions.act_window">
+        <field name="name">Monitors</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_res_users_tree_monitors')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_users_form_monitors')})
+        ]"/>
+        <field name="domain">[('user_type', '=', 'monitor')]</field>
+    </record>
+
+    <!-- Menú raíz -->
+    <menuitem id="menu_orion_root" name="Orion" sequence="10"/>
+
+    <!-- Menú Members -->
+    <menuitem id="menu_orion_members" name="Members" parent="menu_orion_root" sequence="10"/>
+
+    <!-- Menú Parents -->
+    <menuitem id="menu_parents" name="Parents" parent="menu_orion_members" action="action_parents" sequence="10"/>
+
+    <!-- Menú Monitors -->
+    <menuitem id="menu_monitors" name="Monitors" parent="menu_orion_members" action="action_monitors" sequence="20"/>
+
+    <!-- Menú Settings -->
+    <menuitem id="menu_orion_settings" name="Settings" parent="menu_orion_root" sequence="80"/>
+
+    <!-- Menú para agregar usuario -->
+    <menuitem id="menu_add_user" name="Add User" parent="menu_orion_settings" action="action_res_users" sequence="80"/>
 </odoo>

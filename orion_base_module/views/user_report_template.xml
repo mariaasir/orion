@@ -1,15 +1,11 @@
 <odoo>
-    <template id="report_user_credentials">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <div class="page">
-                    <h2>Credenciales de Usuario</h2>
-                    <p><strong>Nombre:</strong> <t t-esc="doc.name"/></p>
-                    <p><strong>Login:</strong> <t t-esc="doc.login"/></p>
-                    <p><strong>Contraseña:</strong> <t t-esc="doc.generated_password"/></p>
-                    <p><em>Le recomendamos cambiar su contraseña tras iniciar sesión.</em></p>
-                </div>
-            </t>
-        </t>
-    </template>
+  <report
+    id="action_report_user_login"
+    model="res.users"
+    string="Datos de Inicio de Sesión"
+    report_type="qweb-pdf"
+    name="orion_base_module.report_user_login"
+    file="orion_base_module.report_user_login"
+    print_report_name="'Datos_Usuario_%s' % (object.login)"
+  />
 </odoo>

@@ -1,24 +1,62 @@
 from odoo import models, fields, api
-import secrets
+import random
+import string
 
-class ResUsers(models.Model):
-    _name = 'users.profile'
-    _description = 'Perfil de Usuario'
+class ResUsersExtension(models.Model):
+    _inherit = 'res.users'
 
-    # Campos personalizados
-    profile_type = fields.Selection([
+    image = fields.Image()  
+    name = fields.Char(required = True)
+    dni = fields.Char(string='DNI', required=True)
+    birthdate = fields.Date(string='Birth Date', required=True)
+    phone = fields.Char(string='Phone')
+    plain_password = fields.Char(string='Password', readonly=False)
+    user_type = fields.Selection([
         ('monitor', 'Monitor'),
-        ('padre', 'Padre/Madre/Tutor'),
-    ], string="Tipo de Usuario", default='padre', required=True)
+        ('parent', 'Padre-Madre'),
+    ], string='User Type', required=True)
 
-    name = fields.Char(string="Nombre", required=True)
-    last_name = fields.Char(string="Apellidos", required=True)
-    dni = fields.Char(string="DNI")
-    birth_date = fields.Date(string="Fecha de Nacimiento")
-    address = fields.Char(string="Dirección")
-    email = fields.Char(string="Email")
-    phone_mobile = fields.Char(string="Teléfono")
-    children_ids = fields.One2many('res.children', 'parent_id', string="Hijos")
+    seccion = fields.Selection([
+        ('mambos', 'Mambos'),
+        ('ryhings', 'Ryhings'),
+        ('tribu', 'Tribu'),
+    ], string='Sección')
 
-    # Asociar el modelo con el usuario de Odoo
-    login_name = fields.Char(string="Nombre de Usuario", required=True)
+    child_ids = fields.One2many(
+        'orion_base_module.childs',
+        'parent_id',
+        string='Childs',
+        compute='_compute_child_ids',
+        store=False,
+    )
+
+    def _compute_child_ids(self):
+        for user in self:
+            user.child_ids = self.env['orion_base_module.childs'].search([('parent_id', '=', user.id)])
+
+  
+
+    
+
+    @api.model
+    def create(self, vals):
+        # Sincronizar email y login para que se use el email para login
+        if vals.get('email'):
+            vals['login'] = vals['email']
+
+        # Generar password si no existe
+        if not vals.get('password'):
+            password = ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
+            vals['password'] = password
+            vals['plain_password'] = password  # Guardar la contraseña generada para mostrar
+
+        return super().create(vals)
+
+    def write(self, vals):
+        # Si se cambia el email, actualizar login
+        if vals.get('email'):
+            vals['login'] = vals['email']
+        return super().write(vals)
+
+    def print_user_login_report(self):
+        return self.env.ref('orion_base_module.action_report_user_login').report_action(self)
