@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orion_inventory_materials_user,orion.inventory.materials.user,model_orion_management_inventory_orion_inventory_materials,,1,1,1,1
