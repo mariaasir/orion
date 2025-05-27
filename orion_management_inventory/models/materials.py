@@ -1,4 +1,6 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 
 class Materials(models.Model):
     _name = 'orion_management_inventory.orion_inventory_materials'
@@ -33,3 +35,63 @@ class Materials(models.Model):
     location = fields.Char(string="Location")
     notes = fields.Text(string="Notes")
     loaned_to = fields.Char(string="Loaned/Reserved To")
+    date = fields.Date(string="Date")
+
+    def action_open_lend_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Lend Material',
+            'res_model': 'orion_management_inventory.lend_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_material_id': self.id,
+                'default_max_quantity': self.quantity,
+            }
+        }
+    
+    def action_open_return_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Return Material',
+            'res_model': 'orion_management_inventory.returns_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_material_id': self.id,
+                'default_max_quantity': self.quantity,
+            }
+        }
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('condition') == 'available':
+            domain = [
+                ('name', '=', vals.get('name')),
+                ('location', '=', vals.get('location')),
+                ('condition', '=', 'available'),
+            ]
+            existing = self.search(domain, limit=1)
+            if existing:
+                existing.quantity += vals.get('quantity', 1)
+                return existing
+        return super().create(vals)
+    
+    @api.model
+    def cron_delete_discarded_materials(self):
+        days_limit = 30 
+        limit_date = date.today() - timedelta(days=days_limit)
+        materials = self.search([
+            ('condition', '=', 'discarded'),
+            ('date', '<=', limit_date) 
+        ])
+        materials.unlink()
+
+    @api.model
+    def cron_mark_obsolete_lost_as_discarded(self):
+        limit_date = date.today() - relativedelta(months=2)
+        materials = self.search([
+            ('condition', 'in', ['obsolete', 'lost']),
+            ('date', '<=', limit_date)
+        ])
+        materials.write({'condition': 'discarded'})

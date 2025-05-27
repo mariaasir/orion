@@ -20,7 +20,6 @@
     <field name="arch" type="xml">
       <form string="Material">
         <sheet>
-          <group>
         <group>
           <field name="name"/>
           <field name="type"/>
@@ -28,19 +27,23 @@
           <field name="quantity"/>
           <field name="location"/>
           <field name="notes"/>
+          <field name="loaned_to" attrs="{'invisible': [('condition', 'not in', ['loaned', 'reserved'])]}"/>
+          <field name="date" attrs="{'invisible': [('condition', 'not in', ['loaned', 'reserved'])]}"/>
         </group>
-          </group>
         </sheet>
       </form>
     </field>
   </record>
 
+ 
   <record id="action_material" model="ir.actions.act_window">
-    <field name="name">Materiales</field>
+    <field name="name">Materials</field>
     <field name="res_model">orion_management_inventory.orion_inventory_materials</field>
     <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="orion_management_inventory.view_material_tree"/>
   </record>
 
+  
   <menuitem
       id="menu_materiales"
       name="Materials"
@@ -48,4 +51,13 @@
       action="action_material"
       sequence="20"
   />
+
+  <menuitem
+      id="menu_materiales_list"
+      name="Inventory of Materials"
+      parent="menu_materiales"
+      action="action_material"
+      sequence="1"
+  />
+
 </odoo>

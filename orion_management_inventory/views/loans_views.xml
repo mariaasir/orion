@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_material_tree_loans_custom" model="ir.ui.view">
+        <field name="name">orion_inventory_module.materials.tree.loans</field>
+        <field name="model">orion_management_inventory.orion_inventory_materials</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="condition"/>
+                <field name="quantity"/>
+                <field name="location"/>
+                <button name="action_open_lend_wizard"
+                        string="Lend"
+                        type="object"
+                        class="oe_highlight"
+                        context="{'default_material_id': id}"
+                        attrs="{'invisible': [('condition', '!=', 'available')]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_material_available" model="ir.actions.act_window">
+        <field name="name">Loans</field>
+        <field name="res_model">orion_management_inventory.orion_inventory_materials</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_material_tree_loans_custom"/>
+        <field name="domain">[('condition','=','available')]</field>
+        <field name="context">{'create': False}</field>
+    </record>
+
+    <menuitem
+      id="menu_materiales_loans"
+      name="Available to Loan"
+      parent="menu_materiales"
+      action="action_material_available"
+      sequence="2"
+    />
+</odoo>

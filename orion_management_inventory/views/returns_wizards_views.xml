@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_returns_wizard_form" model="ir.ui.view">
+        <field name="name">orion_management_inventory.returns_wizard.form</field>
+        <field name="model">orion_management_inventory.returns_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Return Material">
+                <group>
+                    <field name="material_id" readonly="1"/>
+                    <field name="max_quantity" readonly="1"/>
+                    <field name="return_quantity"/>
+                    <field name="location"/>
+                </group>
+                <footer>
+                    <button string="Return" type="object" name="action_confirm_returns" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
