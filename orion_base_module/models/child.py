@@ -17,3 +17,4 @@ class Childs(models.Model):
         ('ryhings', 'Ryhings'),
         ('tribu', 'Tribu'),
     ], string='Section')
+

@@ -83,7 +83,7 @@ class Materials(models.Model):
         limit_date = date.today() - timedelta(days=days_limit)
         materials = self.search([
             ('condition', '=', 'discarded'),
-            ('date', '<=', limit_date) 
+            ('date', '<=', limit_date)
         ])
         materials.unlink()
 
