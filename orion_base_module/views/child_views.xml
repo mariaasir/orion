@@ -3,7 +3,7 @@
     <field name="name">orion_base_module.childs.tree</field>
     <field name="model">orion_base_module.childs</field>
     <field name="arch" type="xml">
-      <tree>
+      <tree decoration-danger="section == 'mambos'" decoration-success="section == 'ryhings'" decoration-warning="section == 'tribu'">
         <field name="name"/>
         <field name="dni"/>
         <field name="birthdate"/>

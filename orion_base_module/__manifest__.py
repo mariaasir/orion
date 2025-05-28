@@ -10,8 +10,8 @@
         "base",
     ],
     "data": [
-        "views/child_views.xml",
         "views/user_profile_views.xml",
+        "views/child_views.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         'views/user_report_template.xml',

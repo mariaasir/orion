@@ -12,7 +12,12 @@
     ],
     "data": [
         "views/inventory_views.xml",
+        "views/loans_views.xml",
+        "views/returns_views.xml",
+        "views/lend_wizards_views.xml",
+        "views/returns_wizards_views.xml",
         "security/ir.model.access.csv",
+        "data/cron.xml"
     ],
     "installable": True,
     "application": True,

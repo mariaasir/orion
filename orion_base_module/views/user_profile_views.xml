@@ -60,6 +60,7 @@
                 <field name="email"/>
                 <field name="phone"/>
                 <field name="dni"/>
+                <button string="Generate Login Report" type="object" name="action_generate_login_report" class="oe_highlight"/>
             </tree>
         </field>
     </record>
@@ -72,6 +73,9 @@
             <form string="Parent">
                 <sheet>
                     <group>
+                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
+                    </group>
+                    <group>
                         <field name="name"/>
                         <field name="dni"/>
                         <field name="birthdate"/>
@@ -82,9 +86,7 @@
                         <field name="child_ids" attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>
                         <field name="plain_password"/>
                     </group>
-                    <group>
-                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
-                    </group>
+                    
                 </sheet>
             </form>
         </field>
@@ -95,22 +97,26 @@
         <field name="name">res.users.tree.monitors</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <tree string="Monitors">
+            <tree string="Monitors" decoration-danger="seccion == 'mambos'" decoration-success="seccion == 'ryhings'" decoration-warning="seccion == 'tribu'">
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
                 <field name="seccion"/>
+                <button string="Generate Login Report" type="object" name="action_generate_login_report" class="oe_highlight"/>
             </tree>
         </field>
     </record>
 
-    <!-- Vista form para monitores -->
+
     <record id="view_res_users_form_monitors" model="ir.ui.view">
         <field name="name">res.users.form.monitors</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
             <form string="Monitor">
                 <sheet>
+                    <group>
+                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
+                    </group>
                     <group>
                         <field name="name"/>
                         <field name="dni"/>
@@ -121,9 +127,7 @@
                         <field name="seccion"/>
                         <field name="plain_password"/>
                     </group>
-                    <group>
-                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
-                    </group>
+                    
                 </sheet>
             </form>
         </field>
@@ -140,6 +144,7 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_users_form_parents')})
         ]"/>
         <field name="domain">[('user_type', '=', 'parent')]</field>
+        <field name="context">{'default_user_type': 'parent'}</field>
     </record>
 
     <!-- Acción para listar monitores -->
@@ -153,6 +158,8 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_users_form_monitors')})
         ]"/>
         <field name="domain">[('user_type', '=', 'monitor')]</field>
+        <field name="context">{'default_user_type': 'monitor'}</field>
+
     </record>
 
     <!-- Menú raíz -->

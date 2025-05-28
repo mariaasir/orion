@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_orion_base_module_childs_user,access_childs_user,model_orion_base_module_childs,,1,1,1,1
+access_custom_res_users,access_custom_res_users,model_res_users,base.group_user,1,1,1,1
+access_childs_model,access.childs.model,model_orion_base_module_childs,base.group_user,1,1,1,1

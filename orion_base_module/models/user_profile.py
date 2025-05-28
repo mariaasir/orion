@@ -2,6 +2,9 @@ from odoo import models, fields, api
 import random
 import string
 
+def _default_password(self):
+    return ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
+
 class ResUsersExtension(models.Model):
     _inherit = 'res.users'
 
@@ -10,7 +13,7 @@ class ResUsersExtension(models.Model):
     dni = fields.Char(string='DNI', required=True)
     birthdate = fields.Date(string='Birth Date', required=True)
     phone = fields.Char(string='Phone')
-    plain_password = fields.Char(string='Password', readonly=False)
+    plain_password = fields.Char(string='Password', readonly=True, default=_default_password)
     user_type = fields.Selection([
         ('monitor', 'Monitor'),
         ('parent', 'Padre-Madre'),
@@ -20,7 +23,7 @@ class ResUsersExtension(models.Model):
         ('mambos', 'Mambos'),
         ('ryhings', 'Ryhings'),
         ('tribu', 'Tribu'),
-    ], string='Sección')
+    ], string='Section')
 
     child_ids = fields.One2many(
         'orion_base_module.childs',
@@ -36,19 +39,15 @@ class ResUsersExtension(models.Model):
 
   
 
-    
-
     @api.model
     def create(self, vals):
-        # Sincronizar email y login para que se use el email para login
         if vals.get('email'):
             vals['login'] = vals['email']
 
-        # Generar password si no existe
         if not vals.get('password'):
             password = ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
             vals['password'] = password
-            vals['plain_password'] = password  # Guardar la contraseña generada para mostrar
+            vals['plain_password'] = password  
 
         return super().create(vals)
 
@@ -58,5 +57,5 @@ class ResUsersExtension(models.Model):
             vals['login'] = vals['email']
         return super().write(vals)
 
-    def print_user_login_report(self):
-        return self.env.ref('orion_base_module.action_report_user_login').report_action(self)
+    def action_generate_login_report(self):
+        return self.env.ref('orion_base_module.action_report_login_user').report_action(self)

@@ -1,0 +1,23 @@
+<odoo>
+    <record id="ir_cron_delete_discarded_materials" model="ir.cron">
+        <field name="name">Delete Discarded Materials</field>
+        <field name="model_id" ref="orion_management_inventory.model_orion_management_inventory_orion_inventory_materials"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_delete_discarded_materials()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="ir_cron_mark_obsolete_lost_as_discarded" model="ir.cron">
+        <field name="name">Mark Obsolete/Lost as Discarded</field>
+        <field name="model_id" ref="orion_management_inventory.model_orion_management_inventory_orion_inventory_materials"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_mark_obsolete_lost_as_discarded()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
