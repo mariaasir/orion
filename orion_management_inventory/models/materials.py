@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError
 
 class Materials(models.Model):
     _name = 'orion_management_inventory.orion_inventory_materials'
@@ -32,10 +33,17 @@ class Materials(models.Model):
     ], string="Type", required=True)
 
     quantity = fields.Integer(string='Quantity', default=1)
-    location = fields.Char(string="Location")
+    location = fields.Char(string="Location", required=True)
     notes = fields.Text(string="Notes")
     loaned_to = fields.Char(string="Loaned/Reserved To")
     date = fields.Date(string="Date")
+
+    @api.constrains('quantity')
+    def _check_quantity_non_negative(self):
+        for record in self:
+            if record.quantity is not None and record.quantity < 0:
+                raise ValidationError("La cantidad debe ser 0 o positiva.")
+
 
     def action_open_lend_wizard(self):
         return {
@@ -62,9 +70,24 @@ class Materials(models.Model):
                 'default_max_quantity': self.quantity,
             }
         }
+    def action_open_reserve_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Reserve Material',
+            'res_model': 'orion_management_inventory.reserve_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_material_id': self.id,
+            }
+        }
     
     @api.model
     def create(self, vals):
+        condition = vals.get('condition')
+        if condition in ['loaned', 'reserved']:
+            if not vals.get('loaned_to') or not vals.get('date'):
+                raise ValidationError("Los campos 'Loaned/Reserved To' y 'Date' son obligatorios cuando el material está en estado 'Loaned' o 'Reserved'.")
         if vals.get('condition') == 'available':
             domain = [
                 ('name', '=', vals.get('name')),
@@ -75,8 +98,21 @@ class Materials(models.Model):
             if existing:
                 existing.quantity += vals.get('quantity', 1)
                 return existing
+        if vals.get('quantity', 1) == 0:
+            vals['condition'] = 'discarded'
         return super().create(vals)
     
+    def write(self, vals):
+        condition = vals.get('condition') or self.condition
+        loaned_to = vals.get('loaned_to') if 'loaned_to' in vals else self.loaned_to
+        date_val = vals.get('date') if 'date' in vals else self.date
+        if condition in ['loaned', 'reserved']:
+            if not loaned_to or not date_val:
+                raise ValidationError("Los campos 'Loaned/Reserved To' y 'Date' son obligatorios cuando el material está en estado 'Loaned' o 'Reserved'.")
+        if 'quantity' in vals and vals['quantity'] == 0:
+            vals['condition'] = 'discarded'
+        return super().write(vals)
+
     @api.model
     def cron_delete_discarded_materials(self):
         days_limit = 30 
@@ -95,3 +131,12 @@ class Materials(models.Model):
             ('date', '<=', limit_date)
         ])
         materials.write({'condition': 'discarded'})
+
+    @api.model
+    def cron_release_expired_reservations(self):
+        today = date.today()
+        materials = self.search([
+            ('condition', '=', 'reserved'),
+            ('date', '<', today)
+        ])
+        materials.write({'condition': 'available'})
