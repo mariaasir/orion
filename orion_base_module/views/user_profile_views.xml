@@ -24,6 +24,10 @@
                         }
                     }'
                     string="Status"/>
+                <button name="action_print_credentials"
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-download"/>
             </tree>
         </field>
     </record>
@@ -73,6 +77,10 @@
                 <field name="email"/>
                 <field name="phone"/>
                 <field name="section"/>
+                <button name="action_print_credentials"
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-download"/>
             </tree>
         </field>
     </record>
@@ -135,6 +143,17 @@
         <field name="context">{'default_user_type': 'monitor'}</field>
     </record>
 
+    <record id="action_parent_own_user" model="ir.actions.act_window">
+        <field name="name">Mi Usuario</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">form</field>
+        <field name="domain">[('id', '=', uid)]</field>
+        <field name="context">{'default_user_type': 'parent'}</field>
+        <field name="groups_id" eval="[(4, ref('orion_base_module.group_padre'))]"/>
+    </record>
+
+
+
     <!-- Menú raíz -->
     <menuitem id="menu_orion_root" name="Orion" sequence="10"/>
 
@@ -149,4 +168,11 @@
 
     <!-- Menú Settings -->
     <menuitem id="menu_orion_settings" name="Settings" parent="menu_orion_root" sequence="80"/>
+
+    <menuitem id="menu_parent_own_user"
+    name="My User"
+    parent="menu_orion_root"
+    action="orion_base_module.action_parent_own_user"
+    sequence="10"
+    groups="orion_base_module.group_padre"/>
 </odoo>

@@ -12,11 +12,11 @@
     "data": [
         "views/user_profile_views.xml",
         "views/child_views.xml",
-        "security/security.xml",
         "security/ir.model.access.csv",
-        'views/user_report_template.xml',
-        "views/user_login_report.xml",
+        "templates/user_login_template.xml",
         "data/ir_cron_data.xml",
+        "security/security.xml",
+
     ],
     "installable": True,
     "application": True,

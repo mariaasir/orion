@@ -1,12 +1,10 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
 import random
 import string
 import re
 
-def _default_password():
-    return ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
 
 class ResUsersExtension(models.Model):
     _inherit = 'res.users'
@@ -16,10 +14,10 @@ class ResUsersExtension(models.Model):
     dni = fields.Char(string='DNI', required=True)
     birthdate = fields.Date(string='Birth Date', required=True)
     phone = fields.Char(string='Phone')
-    plain_password = fields.Char(string='Password', readonly=True, default=_default_password)
+    plain_password = fields.Char(string='Password', default=lambda self: self._default_password())
     user_type = fields.Selection([
         ('monitor', 'Monitor'),
-        ('parent', 'Parent'),
+        ('parent', 'Padre-Madre'),
     ], string='User Type', required=True)
 
     section = fields.Selection([
@@ -35,20 +33,26 @@ class ResUsersExtension(models.Model):
         'child_id',          
         string='Childs',
     )
-
-    is_blocked = fields.Boolean(string="Blocked")
+    is_blocked = fields.Boolean(string="Blocked", default=False)
     password_changed = fields.Boolean(default=False)
 
-    def _compute_child_ids(self):
-        for user in self:
-            user.child_ids = self.env['orion_base_module.childs'].search([('parent_id', '=', user.id)])
+    # -------------------------
+    # MÉTODOS AUXILIARES
+    # -------------------------
+
+    @staticmethod
+    def _default_password():
+        return ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
+
+    # -------------------------
+    # VALIDACIONES
+    # -------------------------
 
     @api.constrains('dni')
     def _check_dni(self):
         for record in self:
             if not re.match(r'^\d{8}[A-Za-z]$', record.dni or ''):
                 raise ValidationError("El DNI debe tener 8 números seguidos de una letra (ejemplo: 12345678A).")
-            # Unicidad de DNI
             if self.search_count([('dni', '=', record.dni), ('id', '!=', record.id)]):
                 raise ValidationError("El DNI ya está registrado.")
 
@@ -57,16 +61,15 @@ class ResUsersExtension(models.Model):
         for record in self:
             if record.phone and not re.match(r'^\d{9}$', record.phone):
                 raise ValidationError("El número de teléfono debe tener 9 dígitos.")
-            # Unicidad de teléfono
             if record.phone and self.search_count([('phone', '=', record.phone), ('id', '!=', record.id)]):
                 raise ValidationError("El número de teléfono ya está registrado.")
 
     @api.constrains('birthdate')
     def _check_birthdate(self):
         for record in self:
-            if record.birthdate and record.birthdate > fields.Date.today():
-                raise ValidationError("La fecha de nacimiento no puede ser en el futuro.")
             if record.birthdate:
+                if record.birthdate > fields.Date.today():
+                    raise ValidationError("La fecha de nacimiento no puede ser en el futuro.")
                 age = (fields.Date.today() - record.birthdate).days // 365
                 if age < 18:
                     raise ValidationError("El usuario debe ser mayor de 18 años.")
@@ -78,41 +81,78 @@ class ResUsersExtension(models.Model):
         for record in self:
             if not re.match(r'^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$', record.name or ''):
                 raise ValidationError("El nombre solo puede contener letras y espacios.")
-            if record.name and (record.name != record.name.strip()):
+            if record.name and record.name != record.name.strip():
                 raise ValidationError("El nombre no debe tener espacios al inicio o al final.")
 
-
-    def write(self, vals):
-        res = super().write(vals)
-        for user in self:
-            if 'password' in vals and vals['password'] and user.is_blocked:
-                user.password_changed = True
-                user.is_blocked = False
-                user.plain_password = ''
-        return res
+    # -------------------------
+    # CAMBIOS EN CREACIÓN Y ESCRITURA
+    # -------------------------
 
     @api.model
     def create(self, vals):
         if vals.get('email'):
             vals['login'] = vals['email']
+
         if not vals.get('password'):
-            password = _default_password()
+            password = self._default_password()
             vals['password'] = password
             vals['plain_password'] = password
+        else:
+            vals['plain_password'] = vals['password']
+
         vals['password_changed'] = False
         vals['is_blocked'] = False
-        return super().create(vals)
+
+        user = super().create(vals)
+
+        if vals.get('user_type') == 'monitor':
+            group_monitor = self.env.ref('orion_base_module.group_monitor')
+            user.groups_id = [(4, group_monitor.id)]
+        elif vals.get('user_type') == 'parent':
+            group_parent = self.env.ref('orion_base_module.group_padre')
+            user.groups_id = [(4, group_parent.id)]
+
+        return user
+
+    def write(self, vals):
+        for user in self:
+            if vals.get('is_blocked') and user.user_type == 'monitor':
+                raise ValidationError("No se puede bloquear a un usuario de tipo Monitor.")
+
+        if 'password' in vals and vals['password']:
+            vals['plain_password'] = vals['password']
+
+        res = super().write(vals)
+
+        for user in self:
+            if 'password' in vals and vals['password'] and user.is_blocked:
+                user.password_changed = True
+                user.is_blocked = False
+
+            if 'user_type' in vals:
+                if vals['user_type'] == 'monitor':
+                    group_monitor = self.env.ref('orion_base_module.group_monitor')
+                    user.groups_id = [(4, group_monitor.id)]
+                elif vals['user_type'] == 'parent':
+                    group_parent = self.env.ref('orion_base_module.group_padre')
+                    user.groups_id = [(4, group_parent.id)]
+
+        return res
+
+    # -------------------------
+    # ACCIONES PERSONALIZADAS
+    # -------------------------
 
     def action_check_and_block_parents(self):
         seven_days_ago = datetime.now() - timedelta(days=7)
         parents_to_block = self.search([
             ('user_type', '=', 'parent'),
-            ('create_date', '<=', seven_days_ago.strftime('%Y-%m-%d %H:%M:%S')),
+            ('create_date', '<=', seven_days_ago),
             ('password_changed', '=', False),
             ('is_blocked', '=', False),
         ])
         for parent in parents_to_block:
-            new_password = _default_password()
+            new_password = self._default_password()
             parent.write({
                 'password': new_password,
                 'plain_password': new_password,
@@ -120,8 +160,11 @@ class ResUsersExtension(models.Model):
                 'password_changed': False,
             })
 
+    def action_print_credentials(self):
+        return self.env.ref('orion_base_module.action_report_user_credentials').report_action(self)
+
     def check_credentials(self, password):
         self.ensure_one()
         if self.is_blocked:
-            raise AccessDenied(_("Your account is blocked. Please contact the administrator."))
+            raise ValidationError(_("Tu cuenta está bloqueada. Contacta con el administrador."))
         return super().check_credentials(password)

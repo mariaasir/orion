@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Plantilla del reporte de credenciales -->
+  <template id="report_user_credentials">
+    <t t-call="web.html_container">
+      <t t-call="web.external_layout">
+        <div class="page">
+          <h2 style="text-align:center;">Credenciales de Acceso</h2>
+          <hr/>
+          <p><strong>Nombre de usuario:</strong> <t t-esc="user.name"/></p>
+          <p><strong>Email:</strong> <t t-esc="user.email or '-'"/></p>
+          <p><strong>Contraseña temporal:</strong> <t t-esc="user.plain_password or '-'"/></p>
+
+          <br/>
+          <div style="margin-top:30px;">
+            <p>
+              <strong>IMPORTANTE:</strong> Esta contraseña es personal e intransferible. 
+              Se recomienda cambiarla tras el primer acceso.<br/>
+              Sus credenciales no deben ser compartidas con terceros.<br/>
+              Si sospecha que su cuenta ha sido comprometida, contacte inmediatamente con el administrador.
+            </p>
+          </div>
+
+          <div style="position:absolute; bottom:30px; width:100%; text-align:center; font-size:10px;">
+            Documento generado automáticamente - OrionTFG
+          </div>
+        </div>
+      </t>
+    </t>
+  </template>
+
+  <!-- Definición del reporte -->
+  <report
+    id="action_report_user_credentials"
+    model="res.users"
+    string="Credenciales de Usuario"
+    report_type="qweb-pdf"
+    name="orion_base_module.report_user_credentials"
+    file="orion_base_module.report_user_credentials"
+    print_report_name="'Credenciales_%s' % (object.name)"
+  />
+</odoo>
