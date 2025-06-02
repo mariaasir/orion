@@ -45,19 +45,20 @@
 
   
   <menuitem
-      id="menu_materiales"
-      name="Materials"
-      parent="orion_base_module.menu_orion_root"
-      action="action_material"
-      sequence="20"
+    id="menu_materiales"
+    name="Materials"
+    parent="orion_base_module.menu_orion_root"
+    action="action_material"
+    sequence="20"
+    groups="orion_base_module.group_monitor"
   />
 
   <menuitem
-      id="menu_materiales_list"
-      name="Inventory of Materials"
-      parent="menu_materiales"
-      action="action_material"
-      sequence="1"
+    id="menu_materiales_list"
+    name="Inventory of Materials"
+    parent="menu_materiales"
+    action="action_material"
+    sequence="1"
   />
 
 </odoo>
