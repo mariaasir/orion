@@ -15,7 +15,8 @@
         "security/security.xml",
         "security/ir.model.access.csv",
         'views/user_report_template.xml',
-        "views/user_login_report.xml"
+        "views/user_login_report.xml",
+        "data/ir_cron_data.xml",
     ],
     "installable": True,
     "application": True,

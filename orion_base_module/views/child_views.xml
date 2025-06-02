@@ -1,4 +1,5 @@
 <odoo>
+  <!-- Vista Tree (Lista) -->
   <record id="view_childs_tree" model="ir.ui.view">
     <field name="name">orion_base_module.childs.tree</field>
     <field name="model">orion_base_module.childs</field>
@@ -8,40 +9,45 @@
         <field name="dni"/>
         <field name="birthdate"/>
         <field name="section"/>
-        <field name="parent_id"/>
+        <field name="parents_id" widget="many2many_tags"/>
       </tree>
     </field>
   </record>
 
+  <!-- Vista Formulario -->
   <record id="view_childs_form" model="ir.ui.view">
-      <field name="name">orion_base_module.childs.form</field>
-      <field name="model">orion_base_module.childs</field>
-      <field name="arch" type="xml">
-        <form string="Child">
-          <sheet>
-            <group>
-              <group>
-                <field name="name"/>
-                <field name="dni"/>
-                <field name="birthdate"/>
-                <field name="email"/>
-                <field name="section"/>
-                <field name="parent_id"/>
-              </group>
-              <group>
-                <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
-              </group>
-            </group>
-          </sheet>
-        </form>
-      </field>
+    <field name="name">orion_base_module.childs.form</field>
+    <field name="model">orion_base_module.childs</field>
+    <field name="arch" type="xml">
+      <form string="Child">
+        <sheet>
+          <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+          <div class="oe_title">
+              <label for="name" string="Name"/>
+              <h1>
+                  <div class="d-flex">
+                      <field class="text-break" name="name" placeholder="e.g. John Doe" modifiers="{required: true}"/>
+                  </div>
+              </h1>
+          </div>
+          <group>
+            <field name="dni"/>
+            <field name="birthdate"/>
+            <field name="email"/>
+            <field name="section" readonly="1"/>
+            <field name="parents_id" widget="many2many_tags"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
   </record>
 
+  <!-- Acción y menú -->
   <record id="action_childs" model="ir.actions.act_window">
-    <field name="name">Childrens</field>
+    <field name="name">Childs</field>
     <field name="res_model">orion_base_module.childs</field>
     <field name="view_mode">tree,form</field>
   </record>
 
-  <menuitem id="menu_childs" name="Childrens" parent="menu_orion_members" action="action_childs"/>
+  <menuitem id="menu_childs" name="Niños" parent="menu_orion_members" action="action_childs"/>
 </odoo>

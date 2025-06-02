@@ -1,66 +1,29 @@
 <odoo>
-    <!-- Vista tree para lista de usuarios genérica (necesaria para Add User) -->
-    <record id="view_add_users_tree" model="ir.ui.view">
-        <field name="name">add.users.tree</field>
-        <field name="model">res.users</field>
-        <field name="arch" type="xml">
-            <tree string="Users">
-                <field name="name"/>
-                <field name="email"/>
-                <field name="phone"/>
-                <field name="dni"/>
-                <field name="user_type"/>
-            </tree>
-        </field>
-    </record>
-
-    <!-- Vista form para agregar usuario -->
-    <record id="view_add_users_form" model="ir.ui.view">
-        <field name="name">add.users.form</field>
-        <field name="model">res.users</field>
-        <field name="arch" type="xml">
-            <form string="Add User">
-                <sheet>
-                    <group>
-                        <field name="user_id" invisible="1"/>
-                        <field name="name"/>
-                        <field name="email"/>
-                        <field name="phone"/>
-                        <field name="dni"/>
-                        <field name="birthdate"/>
-                        <field name="plain_password"/>
-                        <field name="user_type" widget="radio"/>
-                        <field name="seccion" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
-                        <field name="child_ids" attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Acción ventana para agregar usuario -->
-    <record id="action_res_users" model="ir.actions.act_window">
-        <field name="name">Add User</field>
-        <field name="res_model">res.users</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_ids" eval="[
-            (5, 0, 0),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_add_users_tree')}),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('view_add_users_form')})
-        ]"/>
-    </record>
-
     <!-- Vista tree para lista de padres -->
     <record id="view_res_users_tree_parents" model="ir.ui.view">
         <field name="name">res.users.tree.parents</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <tree string="Parents">
+            <tree string="Parents" decoration-danger="is_blocked">
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
+                <field name="active" invisible="1"/>
                 <field name="dni"/>
-                <button string="Generate Login Report" type="object" name="action_generate_login_report" class="oe_highlight"/>
+                <field name="user_type" invisible="1"/>
+                <field name="is_blocked" widget="boolean_badge"
+                    options='{
+                        "terminology": "custom",
+                        "custom_labels": {
+                            "true": "BLOCKED",
+                            "false": "ACTIVE"
+                        },
+                        "custom_classes": {
+                            "true": "bg-danger text-white",
+                            "false": "bg-success text-white"
+                        }
+                    }'
+                    string="Status"/>
             </tree>
         </field>
     </record>
@@ -72,21 +35,29 @@
         <field name="arch" type="xml">
             <form string="Parent">
                 <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" placeholder="e.g. John Doe" modifiers="{required: true}"/>
+                            </div>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
-                    </group>
-                    <group>
-                        <field name="name"/>
                         <field name="dni"/>
                         <field name="birthdate"/>
                         <field name="email"/>
                         <field name="phone"/>
                         <field name="user_type" widget="radio"/>
-                        <field name="seccion" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
-                        <field name="child_ids" attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>
+                        <field name="section" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
+                        <field name="child_ids"
+                            widget="many2many_tags"
+                            string="Children"
+                            readonly="1"
+                            attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>                        
                         <field name="plain_password"/>
                     </group>
-                    
                 </sheet>
             </form>
         </field>
@@ -97,37 +68,40 @@
         <field name="name">res.users.tree.monitors</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <tree string="Monitors" decoration-danger="seccion == 'mambos'" decoration-success="seccion == 'ryhings'" decoration-warning="seccion == 'tribu'">
+            <tree string="Monitors" decoration-danger="section == 'mambos'" decoration-success="section == 'ryhings'" decoration-warning="section == 'tribu'">
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
-                <field name="seccion"/>
-                <button string="Generate Login Report" type="object" name="action_generate_login_report" class="oe_highlight"/>
+                <field name="section"/>
             </tree>
         </field>
     </record>
 
-
+    <!-- Vista form para monitores -->
     <record id="view_res_users_form_monitors" model="ir.ui.view">
         <field name="name">res.users.form.monitors</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
             <form string="Monitor">
                 <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" placeholder="e.g. John Doe" modifiers="{required: true}"/>
+                            </div>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}" string="" help=""/>
-                    </group>
-                    <group>
-                        <field name="name"/>
                         <field name="dni"/>
                         <field name="birthdate"/>
                         <field name="email"/>
                         <field name="phone"/>
                         <field name="user_type" widget="radio"/>
-                        <field name="seccion"/>
+                        <field name="section"/>
                         <field name="plain_password"/>
                     </group>
-                    
                 </sheet>
             </form>
         </field>
@@ -159,7 +133,6 @@
         ]"/>
         <field name="domain">[('user_type', '=', 'monitor')]</field>
         <field name="context">{'default_user_type': 'monitor'}</field>
-
     </record>
 
     <!-- Menú raíz -->
@@ -176,7 +149,4 @@
 
     <!-- Menú Settings -->
     <menuitem id="menu_orion_settings" name="Settings" parent="menu_orion_root" sequence="80"/>
-
-    <!-- Menú para agregar usuario -->
-    <menuitem id="menu_add_user" name="Add User" parent="menu_orion_settings" action="action_res_users" sequence="80"/>
 </odoo>
