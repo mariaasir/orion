@@ -12,18 +12,18 @@
                 <field name="dni"/>
                 <field name="user_type" invisible="1"/>
                 <field name="is_blocked" widget="boolean_badge"
-                    options='{
-                        "terminology": "custom",
-                        "custom_labels": {
-                            "true": "BLOCKED",
-                            "false": "ACTIVE"
-                        },
-                        "custom_classes": {
-                            "true": "bg-danger text-white",
-                            "false": "bg-success text-white"
-                        }
-                    }'
-                    string="Status"/>
+                options='{
+                    "terminology": "custom",
+                    "custom_labels": {
+                        "true": "BLOCKED",
+                        "false": "ACTIVE"
+                    },
+                    "custom_classes": {
+                        "true": "bg-danger text-white",
+                        "false": "bg-success text-white"
+                    }
+                }'
+                string="State"/>
                 <button name="action_print_credentials"
                         type="object"
                         class="btn-primary"
@@ -61,6 +61,10 @@
                             readonly="1"
                             attrs="{'invisible': [('user_type', '!=', 'parent')]}"/>                        
                         <field name="plain_password"/>
+                        <field name="is_blocked" invisible="1"/>
+                        <div attrs="{'invisible': [('is_blocked', '=', False)]}" class="alert alert-danger" style="margin: 16px;">
+                            <strong>¡ATENCIÓN!</strong> Este usuario está <b>BLOQUEADO</b> y no podrá iniciar sesión hasta que cambie su contraseña o sea desbloqueado por un administrador.
+                        </div>
                     </group>
                 </sheet>
             </form>
@@ -143,14 +147,7 @@
         <field name="context">{'default_user_type': 'monitor'}</field>
     </record>
 
-    <record id="action_parent_own_user" model="ir.actions.act_window">
-        <field name="name">Mi Usuario</field>
-        <field name="res_model">res.users</field>
-        <field name="view_mode">form</field>
-        <field name="domain">[('id', '=', uid)]</field>
-        <field name="context">{'default_user_type': 'parent'}</field>
-        <field name="groups_id" eval="[(4, ref('orion_base_module.group_padre'))]"/>
-    </record>
+  
 
 
 
@@ -158,21 +155,16 @@
     <menuitem id="menu_orion_root" name="Orion" sequence="10"/>
 
     <!-- Menú Members -->
-    <menuitem id="menu_orion_members" name="Members" parent="menu_orion_root" sequence="10"/>
+    <menuitem id="menu_orion_members" name="Members" parent="menu_orion_root" sequence="10" groups="orion_base_module.group_monitor"/>
 
     <!-- Menú Parents -->
-    <menuitem id="menu_parents" name="Parents" parent="menu_orion_members" action="action_parents" sequence="10"/>
+    <menuitem id="menu_parents" name="Parents" parent="menu_orion_members" action="action_parents" sequence="10" groups="orion_base_module.group_monitor"/>
 
     <!-- Menú Monitors -->
-    <menuitem id="menu_monitors" name="Monitors" parent="menu_orion_members" action="action_monitors" sequence="20"/>
+    <menuitem id="menu_monitors" name="Monitors" parent="menu_orion_members" action="action_monitors" sequence="20" groups="orion_base_module.group_monitor"/>
 
     <!-- Menú Settings -->
     <menuitem id="menu_orion_settings" name="Settings" parent="menu_orion_root" sequence="80"/>
 
-    <menuitem id="menu_parent_own_user"
-    name="My User"
-    parent="menu_orion_root"
-    action="orion_base_module.action_parent_own_user"
-    sequence="10"
-    groups="orion_base_module.group_padre"/>
+  
 </odoo>

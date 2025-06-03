@@ -40,6 +40,10 @@ class ResUsersExtension(models.Model):
     # MÉTODOS AUXILIARES
     # -------------------------
 
+    def action_print_credentials(self):
+        self.ensure_one()
+        return self.env.ref('orion_base_module.action_report_user_credentials').report_action(self)
+        
     @staticmethod
     def _default_password():
         return ''.join(random.choices(string.ascii_letters, k=5)) + ''.join(random.choices(string.digits, k=3))
@@ -105,12 +109,12 @@ class ResUsersExtension(models.Model):
 
         user = super().create(vals)
 
+        group_monitor = self.env.ref('orion_base_module.group_monitor')
+        group_parent = self.env.ref('orion_base_module.group_parent')
         if vals.get('user_type') == 'monitor':
-            group_monitor = self.env.ref('orion_base_module.group_monitor')
-            user.groups_id = [(4, group_monitor.id)]
+            user.write({'groups_id': [(3, group_parent.id), (4, group_monitor.id)]})
         elif vals.get('user_type') == 'parent':
-            group_parent = self.env.ref('orion_base_module.group_padre')
-            user.groups_id = [(4, group_parent.id)]
+            user.write({'groups_id': [(3, group_monitor.id), (4, group_parent.id)]})
 
         return user
 
@@ -119,11 +123,16 @@ class ResUsersExtension(models.Model):
             if vals.get('is_blocked') and user.user_type == 'monitor':
                 raise ValidationError("No se puede bloquear a un usuario de tipo Monitor.")
 
+            if 'email' in vals and vals['email']:
+                vals['login'] = vals['email']
+
         if 'password' in vals and vals['password']:
             vals['plain_password'] = vals['password']
 
         res = super().write(vals)
 
+        group_monitor = self.env.ref('orion_base_module.group_monitor')
+        group_parent = self.env.ref('orion_base_module.group_parent')
         for user in self:
             if 'password' in vals and vals['password'] and user.is_blocked:
                 user.password_changed = True
@@ -131,14 +140,11 @@ class ResUsersExtension(models.Model):
 
             if 'user_type' in vals:
                 if vals['user_type'] == 'monitor':
-                    group_monitor = self.env.ref('orion_base_module.group_monitor')
-                    user.groups_id = [(4, group_monitor.id)]
+                    user.write({'groups_id': [(3, group_parent.id), (4, group_monitor.id)]})
                 elif vals['user_type'] == 'parent':
-                    group_parent = self.env.ref('orion_base_module.group_padre')
-                    user.groups_id = [(4, group_parent.id)]
+                    user.write({'groups_id': [(3, group_monitor.id), (4, group_parent.id)]})
 
         return res
-
     # -------------------------
     # ACCIONES PERSONALIZADAS
     # -------------------------
@@ -160,8 +166,7 @@ class ResUsersExtension(models.Model):
                 'password_changed': False,
             })
 
-    def action_print_credentials(self):
-        return self.env.ref('orion_base_module.action_report_user_credentials').report_action(self)
+    
 
     def check_credentials(self, password):
         self.ensure_one()

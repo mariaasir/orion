@@ -11,8 +11,8 @@
         <field name="implied_ids" eval="[(4, ref('base.group_system'))]"/>
     </record>
     <!-- Grupo Padre -->
-    <record id="group_padre" model="res.groups">
-        <field name="name">Padre</field>
+    <record id="group_parent" model="res.groups">
+        <field name="name">Parent</field>
         <field name="category_id" ref="orion_base_module.module_category"/>
     </record>
 </odoo>

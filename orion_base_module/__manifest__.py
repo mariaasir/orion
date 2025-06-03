@@ -10,10 +10,11 @@
         "base",
     ],
     "data": [
+        "templates/user_login_template.xml",
         "views/user_profile_views.xml",
+        "views/own_user_parent_views.xml",
         "views/child_views.xml",
         "security/ir.model.access.csv",
-        "templates/user_login_template.xml",
         "data/ir_cron_data.xml",
         "security/security.xml",
 
