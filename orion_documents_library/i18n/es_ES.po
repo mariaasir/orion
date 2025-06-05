@@ -1,0 +1,157 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* orion_documents_library
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-05 18:58+0000\n"
+"PO-Revision-Date: 2025-06-05 19:29+0000\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: es_ES\n"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__create_uid
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__create_date
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__display_name
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__name
+msgid "Document Name"
+msgstr "Nombre del documento"
+
+#. module: orion_documents_library
+#: model:ir.actions.act_window,name:orion_documents_library.action_library_document
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__document_ids
+#: model:ir.ui.menu,name:orion_documents_library.menu_library_document
+#: model_terms:ir.ui.view,arch_db:orion_documents_library.view_library_folder_form
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__file
+msgid "File"
+msgstr "Archivo"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__file_name
+msgid "File Name"
+msgstr "Nombre del archivo"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__folder_id
+msgid "Folder"
+msgstr "Carpeta"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__name
+msgid "Folder Name"
+msgstr "Nombre de la carpeta"
+
+#. module: orion_documents_library
+#: model:ir.actions.act_window,name:orion_documents_library.action_library_folder
+#: model:ir.ui.menu,name:orion_documents_library.menu_library_folder
+#: model_terms:ir.ui.view,arch_db:orion_documents_library.view_library_folder_tree
+msgid "Folders"
+msgstr "Carpetas"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__full_path
+msgid "Full Path"
+msgstr "Ruta absoluta"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__id
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__id
+msgid "ID"
+msgstr "ID"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document____last_update
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder____last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez el"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__write_uid
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__write_date
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: orion_documents_library
+#: model:ir.ui.menu,name:orion_documents_library.menu_library_root
+msgid "Library"
+msgstr "Biblioteca"
+
+#. module: orion_documents_library
+#: model:ir.model,name:orion_documents_library.model_library_document
+msgid "Library Document"
+msgstr "Documento de biblioteca"
+
+#. module: orion_documents_library
+#: model:ir.model,name:orion_documents_library.model_library_folder
+msgid "Library Folder"
+msgstr "Carpeta de biblioteca"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_document__mimetype
+msgid "MIME Type"
+msgstr "MIME tipo"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__navigate_to
+#: model_terms:ir.ui.view,arch_db:orion_documents_library.view_library_folder_form
+msgid "Open"
+msgstr "Abrir"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__parent_id
+msgid "Parent Folder"
+msgstr "Carpeta padre"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__parent_left
+msgid "Parent Left"
+msgstr "Padre izquierdo"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__parent_path
+msgid "Parent Path"
+msgstr "Ruta padre"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__parent_right
+msgid "Parent Right"
+msgstr "Padre derecho"
+
+#. module: orion_documents_library
+#: model:ir.model.fields,field_description:orion_documents_library.field_library_folder__child_ids
+#: model_terms:ir.ui.view,arch_db:orion_documents_library.view_library_folder_form
+msgid "Subfolders"
+msgstr "Subcarpetas"
