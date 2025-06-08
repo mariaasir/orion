@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orion_calendar_events,access.orion.calendar.events,model_orion_calendar_events,base.group_user,1,1,1,1
+access_orion_calendar_section,access.orion.calendar.section,model_orion_calendar_section,base.group_user,1,1,1,1
