@@ -1,5 +1,5 @@
 <odoo>
-    <!-- Vista tree para lista de padres -->
+    <!--Vista tree para lista de padres-->
     <record id="view_res_users_tree_parents" model="ir.ui.view">
         <field name="name">res.users.tree.parents</field>
         <field name="model">res.users</field>
@@ -10,6 +10,7 @@
                 <field name="phone"/>
                 <field name="active" invisible="1"/>
                 <field name="dni"/>
+                <field name="address"/>
                 <field name="user_type" invisible="1"/>
                 <field name="is_blocked" widget="boolean_badge"
                 options='{
@@ -32,7 +33,7 @@
         </field>
     </record>
 
-    <!-- Vista form para padres -->
+    <!--Vista form para padres-->
     <record id="view_res_users_form_parents" model="ir.ui.view">
         <field name="name">res.users.form.parents</field>
         <field name="model">res.users</field>
@@ -54,6 +55,7 @@
                         <field name="email"/>
                         <field name="phone"/>
                         <field name="user_type" widget="radio"/>
+                        <field name="address"/>
                         <field name="section" attrs="{'invisible': [('user_type', '!=', 'monitor')]}"/>
                         <field name="child_ids"
                             widget="many2many_tags"
@@ -63,7 +65,7 @@
                         <field name="plain_password"/>
                         <field name="is_blocked" invisible="1"/>
                         <div attrs="{'invisible': [('is_blocked', '=', False)]}" class="alert alert-danger" style="margin: 16px;">
-                            <strong>¡ATENCIÓN!</strong> Este usuario está <b>BLOQUEADO</b> y no podrá iniciar sesión hasta que cambie su contraseña o sea desbloqueado por un administrador.
+                            <strong>WARN!</strong> This user is <b>BLOCKED</b> and will not be able to log in until you change their password.
                         </div>
                     </group>
                 </sheet>
@@ -71,7 +73,7 @@
         </field>
     </record>
 
-    <!-- Vista tree para lista de monitores -->
+    <!--Vista tree para lista de monitores-->
     <record id="view_res_users_tree_monitors" model="ir.ui.view">
         <field name="name">res.users.tree.monitors</field>
         <field name="model">res.users</field>
@@ -81,6 +83,7 @@
                 <field name="email"/>
                 <field name="phone"/>
                 <field name="section"/>
+                <field name="address"/>
                 <button name="action_print_credentials"
                         type="object"
                         class="btn-primary"
@@ -89,7 +92,7 @@
         </field>
     </record>
 
-    <!-- Vista form para monitores -->
+    <!--Vista form para monitores-->
     <record id="view_res_users_form_monitors" model="ir.ui.view">
         <field name="name">res.users.form.monitors</field>
         <field name="model">res.users</field>
@@ -110,6 +113,7 @@
                         <field name="birthdate"/>
                         <field name="email"/>
                         <field name="phone"/>
+                        <field name="address"/>
                         <field name="user_type" widget="radio"/>
                         <field name="section"/>
                         <field name="plain_password"/>
@@ -119,7 +123,7 @@
         </field>
     </record>
 
-    <!-- Acción para listar padres -->
+    <!--Acción para listar padres-->
     <record id="action_parents" model="ir.actions.act_window">
         <field name="name">Parents</field>
         <field name="res_model">res.users</field>
@@ -133,7 +137,7 @@
         <field name="context">{'default_user_type': 'parent'}</field>
     </record>
 
-    <!-- Acción para listar monitores -->
+    <!--Acción para listar monitores-->
     <record id="action_monitors" model="ir.actions.act_window">
         <field name="name">Monitors</field>
         <field name="res_model">res.users</field>
@@ -151,20 +155,16 @@
 
 
 
-    <!-- Menú raíz -->
+    <!--Menú raíz-->
     <menuitem id="menu_orion_root" name="Orion" sequence="10"/>
 
-    <!-- Menú Members -->
+    <!--Menú Members-->
     <menuitem id="menu_orion_members" name="Members" parent="menu_orion_root" sequence="10" groups="orion_base_module.group_monitor"/>
 
-    <!-- Menú Parents -->
+    <!--Menú Parents-->
     <menuitem id="menu_parents" name="Parents" parent="menu_orion_members" action="action_parents" sequence="10" groups="orion_base_module.group_monitor"/>
 
-    <!-- Menú Monitors -->
+    <!--Menú Monitors-->
     <menuitem id="menu_monitors" name="Monitors" parent="menu_orion_members" action="action_monitors" sequence="20" groups="orion_base_module.group_monitor"/>
-
-    <!-- Menú Settings -->
-    <menuitem id="menu_orion_settings" name="Settings" parent="menu_orion_root" sequence="80"/>
-
   
 </odoo>

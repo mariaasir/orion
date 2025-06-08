@@ -15,7 +15,7 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="o_kanban_record card shadow-sm p-2 rounded" style="width: 500px; display: flex; flex-direction: row;">
-                            <!-- Tarjeta del padre/madre -->
+                            <!--Tarjeta del padre/madre-->
                             <div style="width: 250px; margin-right: 16px;">
                                 <div class="text-center mb-2">
                                     <img t-att-src="kanban_image('res.users', 'image_128', record.id.raw_value)"
@@ -38,12 +38,11 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Tarjetas de los hijos -->
+                            <!--Tarjetas de los hijos-->
                             <div style="display: flex; flex-direction: row; gap: 8px; align-items: flex-start;">
                                 <t t-foreach="record.child_ids.raw_value" t-as="child">
                                     <div class="card p-2 rounded shadow-sm" style="width: 200px;">
                                         <h6 t-esc="child[1]"/>
-                                        <!-- Si quieres más campos, necesitas un compute o usar related fields -->
                                     </div>
                                 </t>
                             </div>
@@ -55,17 +54,16 @@
     </record>
 
     <record id="action_parent_own_user" model="ir.actions.act_window">
-        <field name="name">Mi Usuario</field>
+        <field name="name">My User</field>
         <field name="res_model">res.users</field>
         <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="orion_base_module.view_res_users_kanban_parent_own"/>
         <field name="domain">[('id', '=', uid)]</field>
         <field name="context">{'default_user_type': 'parent'}</field>
-        <field name="groups_id" eval="[(4, ref('orion_base_module.group_parent'))]"/>
     </record>
 
     <menuitem id="menu_parent_own_user"
-              name="Mi Usuario"
+              name="My Information"
               parent="menu_orion_root"
               action="orion_base_module.action_parent_own_user"
               sequence="10"
