@@ -1,21 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Este archivo XML define grupos de usuarios personalizados 
+para un módulo en Odoo.-->
 <odoo>
-    <!-- Categoría personalizada de seguridad -->
-    <record id="module_category_familia" model="ir.module.category">
-        <field name="name">Gestión de Familias</field>
-        <field name="description">Categoría para agrupar monitores y tutores legales</field>
+
+    <!--Crea una nueva categoría llamada "Type" para agrupar los permisos 
+    en la interfaz de administración.-->
+    <record id="module_category" model="ir.module.category">
+        <field name="name">Type</field>
         <field name="sequence">10</field>
     </record>
 
-    <!-- Grupo Monitor -->
+    <!--Crea un grupo llamado "Monitor", asignado a la categoría "Type".Hereda permisos del grupo 
+    base.group_system, lo que le da acceso a opciones administrativas avanzadas.-->
     <record id="group_monitor" model="res.groups">
         <field name="name">Monitor</field>
-        <field name="category_id" ref="orion_base_module.module_category_familia"/>
+        <field name="category_id" ref="orion_base_module.module_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_system'))]"/>
     </record>
-
-    <!-- Grupo Padre/Madre/Tutor -->
-    <record id="group_padre" model="res.groups">
-        <field name="name">Padre/Madre/Tutor</field>
-        <field name="category_id" ref="orion_base_module.module_category_familia"/>
+    <!--Crea un grupo llamado "Parent" para los padres/madres, también bajo la categoría "Type".
+    No hereda permisos de otros grupos.-->
+    <record id="group_parent" model="res.groups">
+        <field name="name">Parent</field>
+        <field name="category_id" ref="orion_base_module.module_category"/>
     </record>
 </odoo>

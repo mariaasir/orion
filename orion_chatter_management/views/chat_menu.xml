@@ -1,0 +1,14 @@
+<odoo>
+    <record id="action_open_chat" model="ir.actions.act_url">
+        <field name="name">Chat</field>
+        <field name="url">/chat</field>
+        <field name="target">self</field>
+    </record>
+
+   <menuitem id="menu_chat_root"
+          name="Chats"
+          parent="orion_base_module.menu_orion_root"
+          action="action_open_chat"/>
+
+
+</odoo>

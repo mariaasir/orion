@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_custom_res_users,access_custom_res_users,model_res_users,base.group_user,1,1,1,1
-access_childs_model,access.childs.model,model_orion_base_module_childs,base.group_user,1,1,1,1
+access_res_users_monitor,res.users.monitor,model_res_users,orion_base_module.group_monitor,1,1,1,1
+access_childs_monitor,childs.monitor,model_orion_base_module_childs,orion_base_module.group_monitor,1,1,1,1
+access_res_users_parent,res.users.parent,model_res_users,orion_base_module.group_parent,1,1,0,0
+access_childs_parent,access.childs.parent,model_orion_base_module_childs,orion_base_module.group_parent,1,0,0,0

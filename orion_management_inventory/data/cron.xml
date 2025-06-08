@@ -20,15 +20,4 @@
         <field name="numbercall">-1</field>
         <field name="active">True</field>
     </record>
-
-    <record id="ir_cron_release_expired_reservations" model="ir.cron">
-        <field name="name">Release Expired Reservations</field>
-        <field name="model_id" ref="orion_management_inventory.model_orion_management_inventory_orion_inventory_materials"/>
-        <field name="state">code</field>
-        <field name="code">model.cron_release_expired_reservations()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
-        <field name="active">True</field>
-    </record>
 </odoo>
