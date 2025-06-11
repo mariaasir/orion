@@ -6,6 +6,7 @@
             <calendar string="Events" date_start="date" color="section_ids"> 
                 <field name="name"/>
                 <field name="section_ids"/>
+                <field name="place_id"/>
                 <field name="cost"/>
             </calendar>
         </field>

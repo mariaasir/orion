@@ -27,7 +27,7 @@ class LibraryFolder(models.Model):
             'view_mode': 'form',
             'res_model': 'library.folder',
             'res_id': self.id,
-            'target': 'current',  # Open in the current window
+            'target': 'current',  
         }
 
     @api.depends('parent_id', 'name', 'parent_id.full_path')

@@ -12,6 +12,10 @@ class Events(models.Model):
         "orion.calendar.section",
         string="Sections"
     )
+    place_id = fields.Many2one(
+        "orion.locations",
+        string="Place"
+    )
     cost = fields.Float(string="Cost")
 
     _sql_constraints = [

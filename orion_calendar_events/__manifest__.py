@@ -9,13 +9,13 @@
     "depends": [
         "base",
         "orion_base_module",
+        "orion_locations",
     ],
     "data": [
         'security/ir.model.access.csv',
         "views/calendar_views.xml",
     ],
     
-
     "installable": True,
     "application": True,
 }
