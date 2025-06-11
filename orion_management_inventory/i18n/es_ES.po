@@ -1,0 +1,346 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* orion_management_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-28 19:09+0000\n"
+"PO-Revision-Date: 2025-05-28 19:19+0000\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: es_ES\n"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__max_quantity
+msgid "Available Quantity"
+msgstr "Cantidad disponible"
+
+#. module: orion_management_inventory
+#: model:ir.ui.menu,name:orion_management_inventory.menu_materiales_loans
+msgid "Available to Loan"
+msgstr "Disponible para Prestar"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__camping
+msgid "Camping"
+msgstr "Camping"
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_lend_wizard_form
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_returns_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__condition
+msgid "Condition"
+msgstr "Estado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__costumes
+msgid "Costumes"
+msgstr "Disfraces"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__create_uid
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__create_uid
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__create_date
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__create_date
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__damaged
+msgid "Damaged"
+msgstr "Dañado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__decoration
+msgid "Decoration"
+msgstr "Ambientación"
+
+#. module: orion_management_inventory
+#: model:ir.actions.server,name:orion_management_inventory.ir_cron_delete_discarded_materials_ir_actions_server
+#: model:ir.cron,cron_name:orion_management_inventory.ir_cron_delete_discarded_materials
+msgid "Delete Discarded Materials"
+msgstr "Eliminar Material Descartado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__discarded
+msgid "Discarded / Donated / Sold"
+msgstr "Descartado / Donado / Vendido"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__display_name
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__display_name
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__electronics
+msgid "Electronics"
+msgstr "Electrónica"
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_lend_wizard_form
+msgid "Enter the name of the person or entity to lend to"
+msgstr "Introduce el nombre de la persona o entidad a  la que se va a prestar"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__furniture
+msgid "Furniture"
+msgstr "Mueble"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__id
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__id
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model:ir.ui.menu,name:orion_management_inventory.menu_materiales_list
+msgid "Inventory of Materials"
+msgstr "Inventario de Materiales"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__kitchen
+msgid "Kitchen Equipment"
+msgstr "Equipo de Cocina"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard____last_update
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials____last_update
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__write_uid
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__write_uid
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__write_date
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__write_date
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_lend_wizard_form
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_material_tree_loans_custom
+msgid "Lend"
+msgstr "Prestar"
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_lend_wizard_form
+msgid "Lend Material"
+msgstr "Prestar Material"
+
+#. module: orion_management_inventory
+#: model:ir.model,name:orion_management_inventory.model_orion_management_inventory_lend_wizard
+msgid "Lend Wizard"
+msgstr "Prestar"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__loaned
+msgid "Loaned"
+msgstr "Prestado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__max_quantity
+msgid "Loaned Quantity"
+msgstr "Cantidad prestada"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__loaned_to
+msgid "Loaned To"
+msgstr "Prestado a "
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__loaned_to
+msgid "Loaned/Reserved To"
+msgstr "Prestado/Reservado a"
+
+#. module: orion_management_inventory
+#: model:ir.actions.act_window,name:orion_management_inventory.action_material_available
+msgid "Loans"
+msgstr "Préstamos"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__location
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__location
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,help:orion_management_inventory.field_orion_management_inventory_lend_wizard__location
+msgid "Location where the material will be stored after lending."
+msgstr "Ubicación donde se guardará el material prestado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,help:orion_management_inventory.field_orion_management_inventory_returns_wizard__location
+msgid "Location where the material will be stored after return."
+msgstr "Ubicación  donde se guardará el material  una vez haya sido devuelto"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__lost
+msgid "Lost / Misplaced"
+msgstr "Perdido"
+
+#. module: orion_management_inventory
+#: model:ir.actions.server,name:orion_management_inventory.ir_cron_mark_obsolete_lost_as_discarded_ir_actions_server
+#: model:ir.cron,cron_name:orion_management_inventory.ir_cron_mark_obsolete_lost_as_discarded
+msgid "Mark Obsolete/Lost as Discarded"
+msgstr "Marcar Obsoleto/Perdido como Descartado"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__material_id
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__material_id
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_material_form
+msgid "Material"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_material_tree
+msgid "Materiales"
+msgstr ""
+
+#. module: orion_management_inventory
+#: model:ir.actions.act_window,name:orion_management_inventory.action_material
+#: model:ir.ui.menu,name:orion_management_inventory.menu_materiales
+msgid "Materials"
+msgstr "Materiales"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,help:orion_management_inventory.field_orion_management_inventory_lend_wizard__loaned_to
+msgid "Name of the person or entity to whom the material is being loaned."
+msgstr "Nombre de la persona o entidad a quien se va a prestar el material"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__notes
+msgid "Notes"
+msgstr "Notas"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__obsolete
+msgid "Obsolete"
+msgstr "Obsoleto"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__others
+msgid "Others"
+msgstr "Otros"
+
+#. module: orion_management_inventory
+#: model:ir.ui.menu,name:orion_management_inventory.menu_materiales_returns
+msgid "Pending Returns"
+msgstr "Devoluciones pendientes"
+
+#. module: orion_management_inventory
+#: model:ir.model,name:orion_management_inventory.model_orion_management_inventory_orion_inventory_materials
+msgid "Physical materials owned by the association"
+msgstr "Materiales adquiridos por la asociación"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_lend_wizard__lend_quantity
+msgid "Quantity to Lend"
+msgstr "Cantidad a prestar"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__return_quantity
+msgid "Quantity to Return"
+msgstr "Cantidad a devolver"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__reserved
+msgid "Reserved"
+msgstr "Reservado"
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_material_tree_returns_custom
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_returns_wizard_form
+msgid "Return"
+msgstr "Devuelto"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_returns_wizard__location
+msgid "Return Location"
+msgstr "Ubicación de destino"
+
+#. module: orion_management_inventory
+#: model_terms:ir.ui.view,arch_db:orion_management_inventory.view_returns_wizard_form
+msgid "Return Material"
+msgstr "Material devuelto"
+
+#. module: orion_management_inventory
+#: model:ir.actions.act_window,name:orion_management_inventory.action_material_loaned
+msgid "Returns"
+msgstr "Devoluciones"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__sports
+msgid "Sports"
+msgstr "Deportes"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__stationery
+msgid "Stationery"
+msgstr "Papelería"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__type__tools
+msgid "Tools"
+msgstr "Herramientas"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields,field_description:orion_management_inventory.field_orion_management_inventory_orion_inventory_materials__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: orion_management_inventory
+#: model:ir.model.fields.selection,name:orion_management_inventory.selection__orion_management_inventory_orion_inventory_materials__condition__under_repair
+msgid "Under Repair"
+msgstr "En reparación"
+
+#. module: orion_management_inventory
+#: model:ir.model,name:orion_management_inventory.model_orion_management_inventory_returns_wizard
+msgid "Wizard for returning loaned materials"
+msgstr "Wizard para devolver materiales prestados"

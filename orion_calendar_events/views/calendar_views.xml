@@ -1,0 +1,34 @@
+<odoo>
+    <record id="view_calendar_orion_events" model="ir.ui.view">
+        <field name="name">orion.calendar.events.calendar</field>
+        <field name="model">orion.calendar.events</field>
+        <field name="arch" type="xml">
+            <calendar string="Events" date_start="date" color="section_ids"> 
+                <field name="name"/>
+                <field name="section_ids"/>
+                <field name="cost"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_calendar_orion_events" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">orion.calendar.events</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_id" ref="view_calendar_orion_events"/>
+        <field name="context">{'default_calendar_mode': 'month'}</field>
+        <field name="help" type="html">
+            <p>Manages the events of the Orion calendar.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_orion_calendar_events_root"
+              name="Events"
+              sequence="10"/>
+
+    <menuitem id="menu_orion_calendar_events"
+              name="Calendar of Events"
+              parent="orion_base_module.menu_orion_root"
+              action="action_calendar_orion_events"
+              sequence="10"/>
+</odoo>

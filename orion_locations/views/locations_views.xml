@@ -1,0 +1,50 @@
+<odoo>
+    <record id="view_orion_locations_tree" model="ir.ui.view">
+        <field name="name">orion.locations.tree</field>
+        <field name="model">orion.locations</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="city"/>
+                <field name="province"/>
+                <field name="owner"/>
+                <field name="cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_orion_locations_form" model="ir.ui.view">
+        <field name="name">orion.locations.form</field>
+        <field name="model">orion.locations</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="address"/>
+                        <field name="city"/>
+                        <field name="province"/>
+                        <field name="postal_code"/>
+                        <field name="coordinates"/>
+                        <field name="owner"/>
+                        <field name="phone_owner"/>
+                        <field name="cost"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_orion_locations" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">orion.locations</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_orion_locations_root"
+          name="Locations"
+          parent="orion_base_module.menu_orion_root"
+          action="action_orion_locations"
+          sequence="10"/>
+</odoo>

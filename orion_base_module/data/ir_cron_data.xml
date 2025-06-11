@@ -1,0 +1,18 @@
+<odoo>
+    <!--Este cron revisa diariamente si hay usuarios tipo padre/madre que 
+    no han cambiado su contraseña tras 7 días desde su creación. Si es así, 
+    bloquea sus cuentas y les genera una nueva contraseña a través de una acción planificada.
+    -->
+    <data noupdate="1">
+        <record id="ir_cron_check_block_parents" model="ir.cron">
+            <field name="name">Check and block parents password</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="state">code</field>
+            <field name="code">model.action_check_and_block_parents()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

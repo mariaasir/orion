@@ -1,0 +1,114 @@
+<odoo>
+    <template id="chat_page_template" name="Chat Page">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Chat Padres-Monitores</h2>
+
+                <div>
+                    <label>Select an interlocutor: </label>
+                    <select id="interlocutor_select" class="form-select mb-3"/>
+                </div>
+
+                <div id="chat_box" class="border p-3 mb-3" style="height:300px; overflow-y:auto; background:#f8f9fa;">
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="chat_input" class="form-control" placeholder="Write a message..."/>
+                    <button id="chat_send_btn" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const chatBox = document.getElementById('chat_box');
+                    const chatInput = document.getElementById('chat_input');
+                    const sendBtn = document.getElementById('chat_send_btn');
+                    const interlocutorSelect = document.getElementById('interlocutor_select');
+                    let currentInterlocutor = null;
+
+                    // Carga interlocutores (padres o monitores excluyendo yo mismo)
+                    async function loadInterlocutors() {
+                        const response = await fetch('/web/dataset/search_read', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                model: 'res.users',
+                                domain: [['id', '!=', odoo.session_info.uid]],
+                                fields: ['id', 'name'],
+                                limit: 100
+                            })
+                        });
+                        const data = await response.json();
+                        interlocutorSelect.innerHTML = '';
+                        data.records.forEach(user => {
+                            const option = document.createElement('option');
+                            option.value = user.id;
+                            option.text = user.name;
+                            interlocutorSelect.appendChild(option);
+                        });
+                        if(data.records.length > 0){
+                            currentInterlocutor = data.records[0].id;
+                            loadMessages();
+                        }
+                    }
+
+                    // Carga mensajes
+                    async function loadMessages() {
+                        if (!currentInterlocutor) return;
+                        const response = await fetch('/chat/messages', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({interlocutor_id: currentInterlocutor})
+                        });
+                        const messages = await response.json();
+                        chatBox.innerHTML = '';
+                        messages.forEach(msg => {
+                            const div = document.createElement('div');
+                            div.textContent = `${msg.date} - ${msg.sender}: ${msg.body}`;
+                            chatBox.appendChild(div);
+                        });
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }
+
+                    // Enviar mensaje
+                    async function sendMessage() {
+                        if (!currentInterlocutor || !chatInput.value.trim()) return;
+                        const response = await fetch('/chat/send_message', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                receiver_id: currentInterlocutor,
+                                body: chatInput.value.trim()
+                            })
+                        });
+                        const result = await response.json();
+                        if(result.success){
+                            chatInput.value = '';
+                            loadMessages();
+                        } else {
+                            alert(result.error || 'Error al enviar mensaje');
+                        }
+                    }
+
+                    interlocutorSelect.addEventListener('change', (e) => {
+                        currentInterlocutor = e.target.value;
+                        loadMessages();
+                    });
+
+                    sendBtn.addEventListener('click', sendMessage);
+                    chatInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            sendMessage();
+                        }
+                    });
+
+                    // Recarga mensajes cada 5 segundos
+                    setInterval(loadMessages, 5000);
+
+                    loadInterlocutors();
+                });
+            </script>
+        </t>
+    </template>
+</odoo>
