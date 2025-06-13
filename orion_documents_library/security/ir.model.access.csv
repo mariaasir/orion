@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_library_folder,access_library_folder,model_library_folder,,1,1,1,1
+access_library_document,access_library_document,model_library_document,,1,1,1,1

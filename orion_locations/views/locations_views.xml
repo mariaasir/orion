@@ -46,5 +46,7 @@
           name="Locations"
           parent="orion_base_module.menu_orion_root"
           action="action_orion_locations"
-          sequence="10"/>
+          sequence="10"
+          groups="orion_base_module.group_monitor"
+/>
 </odoo>

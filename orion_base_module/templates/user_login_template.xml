@@ -2,27 +2,49 @@
 <odoo>
   <data>
 
-    <!-- Plantilla del reporte -->
+    <!-- Report template -->
     <template id="report_user_credentials">
       <t t-name="orion_base_module.report_user_credentials">
         <t t-call="web.external_layout">
+          <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>Asociación Juvenil Grupo Orión</strong><br/>
+              28904 Getafe, Madrid, Spain
+            </div>
+            <div>
+              <img t-att-src="'/orion_base_module/static/description/icon.png'" style="height: 60px;" alt="Logo"/>
+            </div>
+            
+          </div>
           <main class="page">
-            <t t-foreach="docs" t-as="o">              <h2 style="text-align:center;">Credenciales de Acceso</h2>
+            <t t-foreach="docs" t-as="o">
+              <h2 style="text-align:center; margin-top: 30px;">Access Credentials</h2>
               <hr/>
-              <p><strong>Nombre de usuario:</strong> <t t-esc="o.name"/></p>
+              <p><strong>Username:</strong> <t t-esc="o.name"/></p>
               <p><strong>Email:</strong> <t t-esc="o.email or '-'"/></p>
-              <p><strong>Contraseña temporal:</strong> <t t-esc="o.plain_password or '-'"/></p>
-              <br/>
-              <div style="margin-top:30px;">
+              <p><strong>Temporary Password:</strong> <t t-esc="o.plain_password or '-'"/></p>
+
+              <br/><br/>
+              <div>
                 <p>
-                  <strong>IMPORTANTE:</strong> Esta contraseña es personal e intransferible. 
-                  Se recomienda cambiarla tras el primer acceso.<br/>
-                  Sus credenciales no deben ser compartidas con terceros.<br/>
-                  Si sospecha que su cuenta ha sido comprometida, contacte inmediatamente con el administrador.
+                  <strong>IMPORTANT NOTICE:</strong><br/>
+                  These credentials are strictly personal and non-transferable. 
+                  We strongly recommend changing the temporary password immediately after the first login.
+                  Never share your password with anyone under any circumstances.
+                </p>
+                <p>
+                  <strong>DATA PROTECTION:</strong><br/>
+                  In accordance with the European General Data Protection Regulation (GDPR), your personal information is securely processed and stored.
+                  Access to your data is limited to authorized personnel only, and it will not be disclosed to third parties without your consent,
+                  except where required by law. You have the right to access, rectify, or request the deletion of your data at any time by contacting the association.
+                </p>
+                <p>
+                  If you suspect any unauthorized access to your account, please contact the system administrator immediately.
                 </p>
               </div>
+
               <div style="position:absolute; bottom:30px; width:100%; text-align:center; font-size:10px;">
-                Documento generado automáticamente - OrionTFG
+                Document automatically generated - OrionTFG
               </div>
             </t>
           </main>
@@ -30,15 +52,14 @@
       </t>
     </template>
 
-
-    <!-- Registro del reporte -->
+    <!-- Report action -->
     <record id="action_report_user_credentials" model="ir.actions.report">
       <field name="name">User Credentials</field>
       <field name="model">res.users</field>
       <field name="report_type">qweb-pdf</field>
       <field name="report_name">orion_base_module.report_user_credentials</field>
       <field name="report_file">orion_base_module.report_user_credentials</field>
-      <field name="print_report_name">'Credenciales - %s' % (object.name)</field>
+      <field name="print_report_name">'Credentials - %s' % (object.name)</field>
     </record>
 
   </data>

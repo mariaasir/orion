@@ -11,42 +11,52 @@
                 <field name="birthdate"/>
                 <field name="phone"/>
                 <field name="child_ids"/>
-                <field name="image_128"/>
+                <field name="kanban_child_data"/>
+                <field name="image"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="o_kanban_record card shadow-sm p-2 rounded" style="width: 500px; display: flex; flex-direction: row;">
-                            <!--Tarjeta del padre/madre-->
-                            <div style="width: 250px; margin-right: 16px;">
-                                <div class="text-center mb-2">
-                                    <img t-att-src="kanban_image('res.users', 'image_128', record.id.raw_value)"
-                                         class="img img-thumbnail rounded-circle"
-                                         style="width: 80px; height: 80px; object-fit: cover;"/>
-                                    <h5 class="mt-2"><field name="name"/></h5>
-                                </div>
-                                <div class="o_kanban_details">
-                                    <p t-if="record.email.raw_value">
-                                        <i class="fa fa-envelope"/> <field name="email"/>
-                                    </p>
-                                    <p t-if="record.dni.raw_value">
-                                        <i class="fa fa-id-card"/> <field name="dni"/>
-                                    </p>
-                                    <p t-if="record.birthdate.raw_value">
-                                        <i class="fa fa-calendar"/> <field name="birthdate"/>
-                                    </p>
-                                    <p t-if="record.phone.raw_value">
-                                        <i class="fa fa-phone"/> <field name="phone"/>
-                                    </p>
+                        <div class="o_kanban_record card shadow-sm p-3 rounded" style="width: 520px; display: flex; gap: 24px; align-items: flex-start;">
+                            <!-- Info padre/madre -->
+                            <div style="width: 260px; text-align: center;">
+                                <img t-att-src="kanban_image('res.users', 'image', record.id.raw_value)"
+                                    class="img img-thumbnail rounded-circle mb-3"
+                                    style="width: 90px; height: 90px; object-fit: cover; margin: 0 auto;"/>
+                                <h5 class="mb-1"><field name="name"/></h5>
+                                <div class="o_kanban_details text-muted" style="font-size: 0.9rem;">
+                                    <p t-if="record.email.raw_value"><i class="fa fa-envelope me-1"/> <field name="email"/></p>
+                                    <p t-if="record.dni.raw_value"><i class="fa fa-id-card me-1"/> <field name="dni"/></p>
+                                    <p t-if="record.birthdate.raw_value"><i class="fa fa-calendar me-1"/> <field name="birthdate"/></p>
+                                    <p t-if="record.phone.raw_value"><i class="fa fa-phone me-1"/> <field name="phone"/></p>
                                 </div>
                             </div>
-                            <!--Tarjetas de los hijos-->
-                            <div style="display: flex; flex-direction: row; gap: 8px; align-items: flex-start;">
-                                <t t-foreach="record.child_ids.raw_value" t-as="child">
-                                    <div class="card p-2 rounded shadow-sm" style="width: 200px;">
-                                        <h6 t-esc="child[1]"/>
-                                    </div>
+
+                            <!-- Hijos -->
+                            <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 16px;">
+                                <t t-if="record.kanban_child_data.raw_value and record.kanban_child_data.raw_value.length > 0">
+                                    <t t-foreach="record.kanban_child_data.raw_value" t-as="child">
+                                        <div class="card shadow-sm p-3 rounded" style="width: 200px; text-align: center;">
+                                            <img t-if="child.image_128" t-att-src="child.image_128"
+                                                class="img img-thumbnail rounded-circle mb-3"
+                                                style="width: 70px; height: 70px; object-fit: cover; margin: 0 auto;" />
+                                            <h6 class="mb-1" style="font-weight: 600;"><t t-esc="child.name"/></h6>
+                                            <p class="text-truncate" style="font-size: 0.85rem; margin-bottom: 3px;">
+                                                <i class="fa fa-id-card me-1"></i><t t-esc="child.email or '-'"/>
+                                            </p>
+                                            <p class="text-truncate" style="font-size: 0.85rem; color: #666; margin-bottom: 3px;">
+                                                <t t-esc="child.section or '-'"/>
+                                            </p>
+                                            <p style="font-size: 0.85rem; color: #666;">
+                                                <i class="fa fa-calendar me-1"></i><t t-esc="child.birthdate or '-'"/>
+                                            </p>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <p style="color: #888; font-style: italic;">No hay hijos registrados</p>
                                 </t>
                             </div>
                         </div>
+
                     </t>
                 </templates>
             </kanban>

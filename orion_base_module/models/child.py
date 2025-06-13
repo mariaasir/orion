@@ -104,3 +104,21 @@ class Childs(models.Model):
                 raise ValidationError("The name cannot start or end with spaces.")
 
 
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if 'parents_id' in vals:
+            for parent in res.parents_id:
+                parent._add_parent_to_all_child_sections()
+        return res
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'parents_id' in vals:
+            for record in self:
+                for parent in record.parents_id:
+                    parent._add_parent_to_all_child_sections()
+        return res
+
+
+

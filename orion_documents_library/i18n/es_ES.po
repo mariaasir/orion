@@ -1,0 +1,396 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* orion_base_module
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-09 12:03+0000\n"
+"PO-Revision-Date: 2025-06-09 12:12+0000\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: es_ES\n"
+
+#. module: orion_base_module
+#: model:ir.actions.report,print_report_name:orion_base_module.action_report_user_credentials
+msgid "'Credentials - %s' % (object.name)"
+msgstr "'Credenciales - %s' % (object.name)"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "+34 912 345 678 (Ejemplo teléfono)"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "<strong>ASOCIACIÓN JUVENIL GRUPO ORION</strong>"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "<strong>Email:</strong>"
+msgstr "<strong>Correo electrónico:</strong>"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "<strong>IMPORTANT:</strong>"
+msgstr "<strong>IMPORTANTE:</strong>"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "<strong>Name:</strong>"
+msgstr "<strong>Nombre:</strong>"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "<strong>Temporary Password:</strong>"
+msgstr "<strong>Contraseña temporal:</strong>"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_parents
+msgid ""
+"<strong>WARN!</strong> This user is <b>BLOCKED</b> and will not be able to "
+"log in until you change their password."
+msgstr ""
+"<strong>ATENCIÓN!</strong> Este usuario está <b>BLOQUEADO</b> y no podrá "
+"iniciar sesión hasta que actualice su contraseña. Contacte con el "
+"administrador."
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "ASOCIACIÓN JUVENIL GRUPO ORION"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__address
+msgid "Address"
+msgstr "Dirección"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Avenida Reyes Católicos, 35, 28904 Getafe"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__birthdate
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__birthdate
+msgid "Birth Date"
+msgstr "Fecha de Nacimiento"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__is_blocked
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#. module: orion_base_module
+#: model:ir.actions.server,name:orion_base_module.ir_cron_check_block_parents_ir_actions_server
+#: model:ir.cron,cron_name:orion_base_module.ir_cron_check_block_parents
+msgid "Check and block parents password"
+msgstr "Comprueba y bloquea usuarios padre por su contraseña"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_childs_form
+msgid "Child"
+msgstr "Niño"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_parents
+msgid "Children"
+msgstr "Hijo"
+
+#. module: orion_base_module
+#: model:ir.actions.act_window,name:orion_base_module.action_childs
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__child_ids
+#: model:ir.ui.menu,name:orion_base_module.menu_childs
+msgid "Childs"
+msgstr "Hijos"
+
+#. module: orion_base_module
+#: model:ir.model,name:orion_base_module.model_orion_base_module_childs
+msgid "Childs of the association"
+msgstr "Niños de la asociación"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Company Logo"
+msgstr "Logo de la Compañia"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__dni
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__dni
+msgid "DNI"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__display_name
+msgid "Display Name"
+msgstr "Nombre por defecto"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Do not share your credentials with anyone."
+msgstr "No compartas tus credenciales con nadie."
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Document generated automatically - Asociación Grupo Juvenil Orion"
+msgstr "Documento generado automáticamente - Asociación Grupo Juvenil Orion"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__id
+msgid "ID"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid ""
+"If you suspect unauthorized access, contact the administrator immediately."
+msgstr ""
+"Si sospecha de un acceso no autorizado, comuníquese con el administrador de "
+"inmediato."
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__image
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid ""
+"In accordance with data protection regulations (GDPR), your personal data "
+"will be treated confidentially and securely.\n"
+"              Access credentials are generated automatically and stored with "
+"encryption.\n"
+"              You have the right to request, modify or delete your data at "
+"any time."
+msgstr ""
+"De acuerdo con el Reglamento General de Protección de Datos (RGPD), sus "
+"datos personales serán tratados de forma confidencial y segura.\n"
+"              Las credenciales de acceso se generan automáticamente y se "
+"almacenan cifradas.\n"
+"              Tiene derecho a solicitar, modificar o eliminar sus datos en "
+"cualquier momento."
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "It is recommended to change it upon first login."
+msgstr "Se recomienda cambiarlo en el primer inicio de sesión."
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Login Credentials"
+msgstr "Credenciales de acceso"
+
+#. module: orion_base_module
+#: model:ir.model.fields.selection,name:orion_base_module.selection__orion_base_module_childs__section__mambos
+#: model:ir.model.fields.selection,name:orion_base_module.selection__res_users__section__mambos
+msgid "Mambos"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.ui.menu,name:orion_base_module.menu_orion_members
+msgid "Members"
+msgstr "Miembros"
+
+#. module: orion_base_module
+#: model:ir.model.fields.selection,name:orion_base_module.selection__res_users__user_type__monitor
+#: model:res.groups,name:orion_base_module.group_monitor
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_monitors
+msgid "Monitor"
+msgstr "Monitor"
+
+#. module: orion_base_module
+#: model:ir.actions.act_window,name:orion_base_module.action_monitors
+#: model:ir.ui.menu,name:orion_base_module.menu_monitors
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_tree_monitors
+msgid "Monitors"
+msgstr "Monitores"
+
+#. module: orion_base_module
+#: model:ir.ui.menu,name:orion_base_module.menu_parent_own_user
+msgid "My Information"
+msgstr "Mi información"
+
+#. module: orion_base_module
+#: model:ir.actions.act_window,name:orion_base_module.action_parent_own_user
+msgid "My User"
+msgstr "Mi usuario"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__name
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__name
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_childs_form
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_monitors
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_parents
+msgid "Name"
+msgstr "Nombre"
+
+#. module: orion_base_module
+#: model:ir.ui.menu,name:orion_base_module.menu_orion_root
+msgid "Orion"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Page: <span class=\"pageNumber\"/> / <span class=\"totalPages\"/>"
+msgstr "Página: <span class=\"pageNumber\"/> / <span class=\"totalPages\"/>"
+
+#. module: orion_base_module
+#: model:res.groups,name:orion_base_module.group_parent
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_parents
+msgid "Parent"
+msgstr "Padre/Madre/Tutor Legal"
+
+#. module: orion_base_module
+#: model:ir.model.fields.selection,name:orion_base_module.selection__res_users__user_type__parent
+msgid "Parent-Mother"
+msgstr "Padre-Madre"
+
+#. module: orion_base_module
+#: model:ir.actions.act_window,name:orion_base_module.action_parents
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__parents_id
+#: model:ir.ui.menu,name:orion_base_module.menu_parents
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_tree_parents
+msgid "Parents"
+msgstr "Padres"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__plain_password
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__password_changed
+msgid "Password Changed"
+msgstr "Contraseña cambiada"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: orion_base_module
+#: model:ir.model.fields.selection,name:orion_base_module.selection__orion_base_module_childs__section__ryhings
+#: model:ir.model.fields.selection,name:orion_base_module.selection__res_users__section__ryhings
+msgid "Ryhings"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_orion_base_module_childs__section
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__section
+msgid "Section"
+msgstr "Sección"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Spain"
+msgstr "España"
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "Spain - VAT: N/A"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_tree_parents
+msgid "State"
+msgstr "Estado"
+
+#. module: orion_base_module
+#. odoo-python
+#: code:addons/orion_base_module/models/user_profile.py:0
+#, python-format
+msgid "There is no channel for section '%s'. Contact with the administrator."
+msgstr "No hay canal para la sección '%s'. Contacte con el administrador."
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "This password is personal and non-transferable."
+msgstr "Esta contraseña es personal e intransferible."
+
+#. module: orion_base_module
+#: model:ir.model.fields.selection,name:orion_base_module.selection__orion_base_module_childs__section__tribu
+#: model:ir.model.fields.selection,name:orion_base_module.selection__res_users__section__tribu
+msgid "Tribu"
+msgstr ""
+
+#. module: orion_base_module
+#: model:ir.module.category,name:orion_base_module.module_category
+msgid "Type"
+msgstr "Tipo"
+
+#. module: orion_base_module
+#: model:ir.model,name:orion_base_module.model_res_users
+msgid "User"
+msgstr "Usuario"
+
+#. module: orion_base_module
+#: model:ir.actions.report,name:orion_base_module.action_report_user_credentials
+msgid "User Credentials"
+msgstr "Credenciales de Usuario"
+
+#. module: orion_base_module
+#: model:ir.model.fields,field_description:orion_base_module.field_res_users__user_type
+msgid "User Type"
+msgstr "Tipo de Usuario"
+
+#. module: orion_base_module
+#. odoo-python
+#: code:addons/orion_base_module/models/user_profile.py:0
+#, python-format
+msgid "Your account is blocked. Please contact the administrator."
+msgstr "Tu cuenta está bloqueada. Por favor contacte con el administrador."
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "contacto@grupoorion.org"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_childs_form
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_monitors
+#: model_terms:ir.ui.view,arch_db:orion_base_module.view_res_users_form_parents
+msgid "e.g. John Doe"
+msgstr ""
+
+#. module: orion_base_module
+#: model_terms:ir.ui.view,arch_db:orion_base_module.report_user_credentials
+msgid "http://www.grupoorion.org"
+msgstr ""

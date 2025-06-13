@@ -1,0 +1,27 @@
+<odoo>
+    <record id="state_madrid" model="res.country.state">
+        <field name="name">Madrid</field>
+        <field name="code">MD</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    <record id="partner_company_orion" model="res.partner">
+        <field name="name">Asociación Juvenil Grupo Orión</field>
+        <field name="is_company">True</field>
+        <field name="street">Avenida Reyes Católicos Nº35</field>
+        <field name="city">Getafe</field>
+        <field name="zip">28904</field>
+        <field name="state_id" ref="orion_base_module.state_madrid"/>
+        <field name="country_id" ref="base.es"/>
+        <field name="phone">644434762</field>
+        <field name="email">asociacion.grupo.orion@gmail.com</field>
+    </record>
+
+    <record id="company_orion" model="res.company">
+        <field name="name">Asociación Juvenil Grupo Orión</field>
+        <field name="partner_id" ref="partner_company_orion"/>
+        <field name="currency_id" ref="base.EUR"/>
+        <field name="sequence" eval="10"/>
+        <field name="logo" type="base64" file="orion_base_module/static/description/icon.png"/>
+
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_reserve_wizard_form" model="ir.ui.view">
+        <field name="name">orion_management_inventory.reserve_wizard.form</field>
+        <field name="model">orion_management_inventory.reserve_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reserve Material">
+                <group>
+                    <field name="material_id" readonly="1"/>
+                    <field name="reserve_quantity"/>
+                    <field name="reserved_by"/>
+                    <field name="reserve_date"/>
+                </group>
+                <footer>
+                    <button string="Reserve" type="object" name="action_confirm_reserve" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

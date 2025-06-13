@@ -3,7 +3,7 @@
     <field name="name">orion_inventory_module.materials.tree</field>
     <field name="model">orion_management_inventory.orion_inventory_materials</field>
     <field name="arch" type="xml">
-      <tree string="Materiales" decoration-danger="condition == 'lost'" decoration-success="condition == 'available'"             decoration-muted="condition == 'discarded' or condition == 'damaged'"
+      <tree string="Materiales" decoration-danger="condition == 'lost'" decoration-success="condition == 'available'"  decoration-muted="condition == 'discarded' or condition == 'damaged'"
        decoration-warning="condition == 'loaned'">  
         <field name="name"/>
         <field name="type"/>
@@ -45,20 +45,20 @@
 
   
   <menuitem
-    id="menu_materiales"
-    name="Materials"
-    parent="orion_base_module.menu_orion_root"
-    action="action_material"
-    sequence="20"
-    groups="orion_base_module.group_monitor"
+      id="menu_materiales"
+      name="Materials"
+      parent="orion_base_module.menu_orion_root"
+      action="action_material"
+      sequence="20"
+      groups="orion_base_module.group_monitor"
   />
 
   <menuitem
-    id="menu_materiales_list"
-    name="Inventory of Materials"
-    parent="menu_materiales"
-    action="action_material"
-    sequence="1"
+      id="menu_materiales_list"
+      name="Inventory of Materials"
+      parent="menu_materiales"
+      action="action_material"
+      sequence="1"
   />
 
 </odoo>

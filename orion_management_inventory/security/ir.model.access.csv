@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_orion_inventory_materials_user,orion.inventory.materials.user,model_orion_management_inventory_orion_inventory_materials,orion_base_module.group_monitor,1,1,1,1
 access_lend_wizard_user,lend.wizard.user,model_orion_management_inventory_lend_wizard,orion_base_module.group_monitor,1,1,1,1
 access_returns_wizard_user,returns.wizard.user,model_orion_management_inventory_returns_wizard,orion_base_module.group_monitor,1,1,1,1
+access_reserve_wizard_user,reserve.wizard.user,model_orion_management_inventory_reserve_wizard,orion_base_module.group_monitor,1,1,1,1

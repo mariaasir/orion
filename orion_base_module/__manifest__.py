@@ -8,8 +8,10 @@
     "summary": "Module for managing users in Orion, including user profiles, child management, and login functionality.",
     "depends": [
         "base",
+        "mail",
     ],
     "data": [
+        "data/companies.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         "templates/user_login_template.xml",
